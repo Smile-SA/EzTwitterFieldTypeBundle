@@ -1,0 +1,9 @@
+{% extends 'EzPublishCoreBundle::fielddefinition_settings.html.twig' %}
+
+{% block smiletwitter_settings %}
+    <ul class="fielddef-settings {{ fielddefinition.fieldTypeIdentifier }}-settings">
+        {% set defaultValue = fielddefinition.defaultValue.value %}
+        {{ block('settings_defaultvalue') }}
+    </ul>
+{% endblock %}
+

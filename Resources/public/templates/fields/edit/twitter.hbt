@@ -1,0 +1,125 @@
+<div class="pure-g ez-editfield-row smile-editfield-row-twitter-title">
+    <div class="pure-u ez-editfield-infos">
+        <label for="ez-field-{{ content.contentId }}-{{ fieldDefinition.identifier }}-title">
+            <p class="ez-fielddefinition-name">
+                {{ translate_property fieldDefinition.names }}{{#if isRequired}}*{{/if}}:
+            </p>
+            <p class="smile-editfield-twitter-title-error-message ez-editfield-error-message">&nbsp;</p>
+        </label>
+    </div>
+    <div class="pure-u ez-editfield-input-area ez-default-error-style">
+        <label class="ez-field-sublabel smile-twitter-title-label ez-font-icon" for="ez-field-{{ content.contentId }}-{{ fieldDefinition.identifier }}-title">
+            Title{{#if isRequired}}*{{/if}}:
+        </label>
+        <div class="ez-editfield-input"><div class="smile-twitter-input-ui"><input type="text"
+            class="smile-twitter-title-value ez-validated-input"
+            value="{{ field.fieldValue.title }}"
+            id="ez-field-{{ content.contentId }}-{{ fieldDefinition.identifier }}-title"
+            {{#if titleRequired}} required{{/if}}
+            {{#if readOnlyTitle}} readonly{{/if}}
+        ></div></div>
+    </div>
+</div>
+
+<div class="pure-g ez-editfield-row smile-editfield-row-twitter-type ez-view-selectioneditview">
+    <div class="pure-u ez-editfield-infos">
+        <label for="ez-field-{{ content.contentId }}-{{ fieldDefinition.identifier }}-type">
+            <p class="smile-editfield-twitter-type-error-message ez-editfield-error-message">&nbsp;</p>
+        </label>
+    </div>
+    <div class="pure-u ez-editfield-input-area ez-default-error-style">
+        <label class="ez-field-sublabel" for="ez-field-{{ content.contentId }}-{{ fieldDefinition.identifier }}-type">
+            Type{{#if isRequired}}*{{/if}}:
+        </label>
+        <div class="ez-editfield-input"><div class="ez-selection-input-ui smile-twitter-type-input-ui" id="ez-field-{{ content.contentId }}-{{ fieldDefinition.identifier }}-type">
+            <ul class="ez-selection-values smile-twitter-type-values">{{#each selectedTypes}}<li class="ez-selection-value smile-twitter-type-value" data-text="{{text}}" data-key= "{{key}}">{{text}}</li>{{/each}}</ul>
+            <div class="ez-selection-list smile-twitter-type-list">
+                <input type="text" class="ez-selection-filter-input smile-twitter-type-filter-input" placeholder="Filter the option list">
+                <ul class="ez-selection-options smile-twitter-type-options"></ul>
+            </div>
+        </div></div>
+        {{> ez_fielddescription_tooltip }}
+    </div>
+</div>
+
+<div class="pure-g ez-editfield-row smile-editfield-row-twitter-user ez-view-selectioneditview">
+    <div class="pure-u ez-editfield-infos">
+        <label for="ez-field-{{ content.contentId }}-{{ fieldDefinition.identifier }}-user">
+            <p class="smile-editfield-twitter-user-error-message ez-editfield-error-message">&nbsp;</p>
+        </label>
+    </div>
+    <div class="pure-u ez-editfield-input-area ez-default-error-style">
+        <label class="ez-field-sublabel" for="ez-field-{{ content.contentId }}-{{ fieldDefinition.identifier }}-user">
+            @Uesr{{#if isRequired}}*{{/if}}:
+        </label>
+        <div class="ez-editfield-input"><div class="smile-twitter-input-ui"><input type="text"
+            class="smile-twitter-user-value ez-validated-input"
+            value="{{ field.fieldValue.user }}"
+            id="ez-field-{{ content.contentId }}-{{ fieldDefinition.identifier }}-user"
+            {{#if isRequired}} required{{/if}}
+        ></div></div>
+        {{> ez_fielddescription_tooltip }}
+    </div>
+</div>
+
+<div class="pure-g ez-editfield-row smile-editfield-row-twitter-options">
+    <div class="pure-u ez-editfield-infos">
+        <label for="ez-field-{{ content.contentId }}-{{ fieldDefinition.identifier }}-options">
+            <p class="smile-editfield-twitter-options-error-message ez-editfield-error-message">&nbsp;</p>
+        </label>
+    </div>
+    <div class="pure-u ez-editfield-input-area">
+        <fieldset class="ez-fieldgroup ez-fieldgroup-content is-collapsed">
+            <div class="fieldgroup-name ez-font-icon">Options</div>
+            <div class="fieldgroup-fields" style="overflow: hidden; height: 0px;">
+                {{#each twitterOptionList}}
+                    <label class="ez-field-sublabel smile-twitter-sublabel" for="ez-field-{{ ../content.contentId }}-{{ ../fieldDefinition.identifier }}-options-{{Key}}">
+                        {{Name}}
+                    </label>
+                    <div class="ez-editfield-input">
+                        {{#if Field.checkbox}}
+                            <div class="ez-checkbox-input-ui">
+                            {{#each Options}}
+                                <div class="smile-twitter-checkbox">
+                                    <input type="checkbox"
+                                        class="smile-twitter-options-{{@key}}-value ez-validated-input"
+                                        value="{{.}}"
+                                        id="ez-field-{{ ../../../content.contentId }}-{{ ../../../fieldDefinition.identifier }}-options-{{@key}}"
+                                    > {{.}}
+                                </div>
+                            {{/each}}
+                            </div>
+                        {{else}}
+                            {{#if Field.radio}}
+                                <div class="ez-radio-input-ui">
+                                {{#each Options}}
+                                    <input type="radio"
+                                        class="smile-twitter-options-{{@key}}-value ez-validated-input"
+                                        value="{{.}}"
+                                        name="ez-field-{{ ../../../../content.contentId }}-{{ ../../../../fieldDefinition.identifier }}-options-{{@key}}"
+                                        id="ez-field-{{ ../../../../content.contentId }}-{{ ../../../../fieldDefinition.identifier }}-options-{{@key}}"
+                                    > {{.}}
+                                {{/each}}
+                                </div>
+                            {{else}}
+                                {{#if Field.input}}
+                                    <div class="smile-twitter-input-ui {{#if Type.integer}}ez-integer-input-ui{{/if}}">
+                                    <input type="text"
+                                        class="smile-twitter-options-{{Key}}-value ez-validated-input"
+                                        value=""
+                                        id="ez-field-{{ ../../../../content.contentId }}-{{ ../../../../fieldDefinition.identifier }}-options-{{Key}}"
+                                    ></div>
+                                {{/if}}
+                            {{/if}}
+                        {{/if}}
+                    </div>
+                {{/each}}
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+

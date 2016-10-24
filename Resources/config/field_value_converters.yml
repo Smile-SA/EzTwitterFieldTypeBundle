@@ -1,0 +1,9 @@
+parameters:
+    ezpublish.fieldType.smiletwitter.converter.class: Smile\EzTwitterFieldTypeBundle\Persistence\Content\FieldValue\Converter\TwitterConverter
+
+services:
+    ezpublish.fieldType.smiletwitter.converter:
+        class: "%ezpublish.fieldType.smiletwitter.converter.class%"
+        tags:
+            - {name: ezpublish.storageEngine.legacy.converter, alias: smiletwitter, lazy: true, callback: '::create'}
+

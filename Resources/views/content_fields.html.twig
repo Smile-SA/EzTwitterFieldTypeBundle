@@ -1,0 +1,18 @@
+{% extends 'EzPublishCoreBundle::content_fields.html.twig' %}
+
+{% block smiletwitter_field %}
+    {% spaceless %}
+        {% set field_value = field.value %}
+        {% set type = '' %}
+        {% if field_value.type == 'likes' %}
+            {% set type = '/likes' %}
+        {% endif %}
+        <a
+            class="twitter-timeline"
+            href="https://twitter.com/{{ field_value.user }}{{ type }}">
+            {{ field_value.title }}
+        </a>
+        <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+        {{ block( 'simple_inline_field' ) }}
+    {% endspaceless %}
+{% endblock %}

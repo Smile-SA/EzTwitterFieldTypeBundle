@@ -1,0 +1,33 @@
+.smile-twitter-input-ui {
+    width: 100%;
+    display: inline-block;
+    vertical-align: bottom;
+}
+
+.smile-twitter-input-ui input {
+    width: 100%;
+}
+
+.ez-view-twittereditview .ez-editfield-row:first-of-type .ez-field-sublabel {
+    padding-top: 1.5em;
+}
+
+.ez-view-twittereditview .ez-editfield-input,
+.ez-view-twittereditview .ez-editfield-input-no-validation {
+    margin-top: 0.3em;
+}
+
+.ez-checkbox-input-ui .smile-twitter-checkbox {
+    float:left;
+    width: 50%;
+}
+.ez-checkbox-input-ui .smile-twitter-checkbox:even {
+    clear:left;
+}
+.smile-twitter-sublabel {
+    clear:left;
+}
+
+.smile-editfield-row-twitter-options .ez-field-sublabel {
+    padding-top: 1em;
+}

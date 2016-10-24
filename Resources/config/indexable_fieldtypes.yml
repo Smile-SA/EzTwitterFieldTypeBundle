@@ -1,0 +1,8 @@
+parameters:
+    ezpublish.fieldType.indexable.smiletwitter.class: Smile\EzTwitterFieldTypeBundle\FieldType\Twitter\SearchField
+
+services:
+    ezpublish.fieldType.indexable.smiletwitter:
+        class: "%ezpublish.fieldType.indexable.smiletwitter.class%"
+        tags:
+            - {name: ezpublish.fieldType.indexable, alias: smiletwitter}

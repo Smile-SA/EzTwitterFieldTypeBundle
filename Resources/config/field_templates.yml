@@ -1,0 +1,9 @@
+system:
+    default:
+        fielddefinition_edit_templates:
+            -
+                template: "SmileEzTwitterFieldTypeBundle::field_types.html.twig"
+        field_templates:
+            -
+                template: "SmileEzTwitterFieldTypeBundle::content_fields.html.twig"
+

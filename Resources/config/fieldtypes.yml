@@ -1,0 +1,55 @@
+parameters:
+    ezpublish.fieldType.smiletwitter.class: Smile\EzTwitterFieldTypeBundle\FieldType\Twitter\Type
+    ezpublish.fieldType.smiletwitter.types.data:
+        profile: {Name: "Profile", Key: "profile"}
+        likes: {Name: "Likes", Key: "likes"}
+    ezpublish.fieldType.smiletwitter.options.data:
+        chrome:
+            Name: "Chrome"
+            Key: "chrome"
+            Field: {checkbox: true}
+            Options: ["noheader", "nofooter", "noborders", "noscrollbar", "transparent"]
+        tweetlimit: {Name: "Tweet limit", Key: "tweet-limit", Field: {input: true}, Type: {integer: true}}
+        ariapolite: {Name: "Aria polte", Key: "aria-polite", Field: {checkbox: true}, Options: ["assertive"]}
+        lang: {Name: "Lang", Key: "lang", Field: {input: true}}
+        theme:
+            Name: "Theme"
+            Key: "theme"
+            Field: {radio: true}
+            Options: ["light", "dark"]
+        linkcolor: {Name: "Link color", Key: "link-color", Field: {input: true}, Type: {hexa: true}}
+        bordercolor: {Name: "Border color", Key: "border-color", Field: {input: true}, Type: {hexa: true}}
+        width: {Name: "Width", Key: "width", Field: {input: true}, Type: {integer: true}}
+        height: {Name: "Height", Key: "height", Field: {input: true}, Type: {integer: true}}
+    ezrepoforms.field_type.form_mapper.smiletwitter.class: Smile\EzTwitterFieldTypeBundle\FieldType\Twitter\FormMapper
+
+services:
+    ezsystems.platformui.application_config.provider.types_info:
+        class: "%ezsystems.platformui.application_config.provider.value.class%"
+        arguments:
+            - "%ezpublish.fieldType.smiletwitter.types.data%"
+        tags:
+            - {name: ezsystems.platformui.application_config_provider, key: 'twitterTypesInfo'}
+
+    ezsystems.platformui.application_config.provider.options_info:
+        class: "%ezsystems.platformui.application_config.provider.value.class%"
+        arguments:
+            - "%ezpublish.fieldType.smiletwitter.options.data%"
+        tags:
+            - {name: ezsystems.platformui.application_config_provider, key: 'twitterOptionsInfo'}
+
+    ezpublish.fieldType.smiletwitter:
+        class: "%ezpublish.fieldType.smiletwitter.class%"
+        arguments: ["%ezpublish.fieldType.smiletwitter.types.data%"]
+        parent: ezpublish.fieldType
+        tags:
+            - {name: ezpublish.fieldType, alias: smiletwitter}
+
+    ezrepoforms.field_type.form_mapper.smiletwitter:
+        class: "%ezrepoforms.field_type.form_mapper.smiletwitter.class%"
+        tags:
+            - { name: ez.fieldFormMapper.definition, fieldType: smiletwitter }
+            - { name: ez.fieldFormMapper.value, fieldType: smiletwitter }
+        arguments:
+            - "@ezpublish.api.service.field_type"
+

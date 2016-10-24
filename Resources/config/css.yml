@@ -1,0 +1,5 @@
+system:
+    default:
+        css:
+            files:
+                - %smile_twitterfieldtype.public_dir%/css/views/fields/edit/twitter.css

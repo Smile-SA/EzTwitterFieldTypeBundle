@@ -1,0 +1,29 @@
+system:
+    default:
+        yui:
+            modules:
+                ez-rawcontentview:
+                    requires:
+                        - 'smile-twitter-view'
+                ez-contenteditformview:
+                    requires:
+                        - 'smile-twitter-editview'
+                twitterview-ez-template:
+                    type: 'template'
+                    path: "%smile_twitterfieldtype.public_dir%/templates/fields/view/twitter.hbt"
+                smile-twitter-view:
+                    requires: ['ez-fieldview', 'twitterview-ez-template']
+                    dependencyOf: ['ez-rawcontentview']
+                    path: "%smile_twitterfieldtype.public_dir%/js/views/fields/smile-twitter-view.js"
+                twittereditview-ez-template:
+                    type: 'template'
+                    path: "%smile_twitterfieldtype.public_dir%/templates/fields/edit/twitter.hbt"
+                smile-twitter-editview:
+                    requires: ['ez-fieldeditview', 'event-valuechange', 'twittereditview-ez-template']
+                    dependencyOf: ['ez-contenteditformview']
+                    path: "%smile_twitterfieldtype.public_dir%/js/views/fields/smile-twitter-editview.js"
+
+
+
+
+
