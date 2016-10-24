@@ -13,7 +13,6 @@ class Configuration implements ConfigurationInterface
     public function getConfigTreeBuilder()
     {
         $treeBuilder = new TreeBuilder();
-        $rootNode = $treeBuilder->root('smile_twitterfieldtype');
 
         return $treeBuilder;
     }
