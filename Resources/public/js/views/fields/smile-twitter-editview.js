@@ -11,6 +11,10 @@ YUI.add('smile-twitter-editview', function (Y) {
         VALUES_TPL: '<li class="ez-selection-value smile-twitter-type-value" />',
 
         events: {
+            '.smile-twitter-input-ui input:required': {
+                'blur': 'validate',
+                'valuechange': 'validate'
+            },
             '.smile-twitter-type-values': {
                 'tap': '_toggleShowSelectionTypeUI',
             },
@@ -59,6 +63,22 @@ YUI.add('smile-twitter-editview', function (Y) {
                 this._set('typeValues', this._getSelectedTextTypeValues());
             });
             this.after('showSelectionUIChange', this._uiShowSelectionTypeList);
+        },
+
+        validate: function (e) {
+            var validity = this._getInputValidity(e);
+
+            if (validity && validity.valueMissing ) {
+                this.set('errorStatus', 'This field is required');
+            } else {
+                this.set('errorStatus', false);
+            }
+        },
+
+        _getInputValidity: function (e) {
+            if (e && e.target && typeof e.target != 'undefined')
+                return e.target.get('validity');
+            return false;
         },
 
         _initSelectionTypeFilter: function () {
@@ -144,7 +164,6 @@ YUI.add('smile-twitter-editview', function (Y) {
 
         _validateAddedRemovedTypeValues: function (e) {
             if ( e.added || e.removed ) {
-                this.validate();
             }
         },
 
@@ -164,7 +183,6 @@ YUI.add('smile-twitter-editview', function (Y) {
                 this._selectionTypeFilter.resetFilter();
                 container.addClass(IS_LIST_HIDDEN);
             }
-            this.validate();
         },
 
         _toggleShowSelectionTypeUI: function (e) {
@@ -175,6 +193,7 @@ YUI.add('smile-twitter-editview', function (Y) {
 
         _removeTypeValue: function (e) {
             this._removeSelectionType(e.target.getAttribute('data-text'), e.target);
+            this.validate(e);
         },
 
         _isTopList: function () {
@@ -275,9 +294,13 @@ YUI.add('smile-twitter-editview', function (Y) {
         },
 
         _getFieldValue: function () {
+            var typeValue = null;
+            if (this.get('container').one('.smile-twitter-type-value'))
+                typeValue = this.get('container').one('.smile-twitter-type-value').getAttribute('data-key');
+
             var fieldValue = {
                     title: this._getInputFieldValue('title'),
-                    type: this.get('container').one('.smile-twitter-type-value').getAttribute('data-key'),
+                    type: typeValue,
                     user: this._getInputFieldValue('user'),
                     options: this._getOptionValues(),
                 };

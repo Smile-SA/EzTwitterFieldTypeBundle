@@ -15,8 +15,7 @@
             class="smile-twitter-title-value ez-validated-input"
             value="{{ field.fieldValue.title }}"
             id="ez-field-{{ content.contentId }}-{{ fieldDefinition.identifier }}-title"
-            {{#if titleRequired}} required{{/if}}
-            {{#if readOnlyTitle}} readonly{{/if}}
+            {{#if isRequired}} required{{/if}}
         ></div></div>
     </div>
 </div>
