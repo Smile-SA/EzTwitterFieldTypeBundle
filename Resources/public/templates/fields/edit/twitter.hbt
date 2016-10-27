@@ -82,9 +82,12 @@
                             {{#each Options}}
                                 <div class="smile-twitter-checkbox">
                                     <input type="checkbox"
-                                        class="smile-twitter-options-{{@key}}-value ez-validated-input"
+                                        class="smile-twitter-options-{{../Key}}-value ez-validated-input"
                                         value="{{.}}"
                                         id="ez-field-{{ ../../../content.contentId }}-{{ ../../../fieldDefinition.identifier }}-options-{{@key}}"
+                                        {{#with (lookup ../../../field.fieldValue.options ../Key)}}
+                                            {{#ifIn ../. this}}checked="checked"{{/ifIn}}
+                                        {{/with}}
                                     > {{.}}
                                 </div>
                             {{/each}}
@@ -94,10 +97,13 @@
                                 <div class="ez-radio-input-ui">
                                 {{#each Options}}
                                     <input type="radio"
-                                        class="smile-twitter-options-{{@key}}-value ez-validated-input"
+                                        class="smile-twitter-options-{{../../Key}}-value ez-validated-input"
                                         value="{{.}}"
-                                        name="ez-field-{{ ../../../../content.contentId }}-{{ ../../../../fieldDefinition.identifier }}-options-{{@key}}"
-                                        id="ez-field-{{ ../../../../content.contentId }}-{{ ../../../../fieldDefinition.identifier }}-options-{{@key}}"
+                                        name="ez-field-{{ ../../../../content.contentId }}-{{ ../../../../fieldDefinition.identifier }}-options-{{../../Key}}"
+                                        id="ez-field-{{ ../../../../content.contentId }}-{{ ../../../../fieldDefinition.identifier }}-options-{{../../Key}}"
+                                        {{#with (lookup ../../../../field.fieldValue.options ../../Key)}}
+                                            {{#ifEqual ../. this}}checked="checked"{{/ifEqual}}
+                                        {{/with}}
                                     > {{.}}
                                 {{/each}}
                                 </div>
@@ -106,7 +112,7 @@
                                     <div class="smile-twitter-input-ui {{#if Type.integer}}ez-integer-input-ui{{/if}}">
                                     <input type="text"
                                         class="smile-twitter-options-{{Key}}-value ez-validated-input"
-                                        value=""
+                                        value="{{#with (lookup ../../../../field.fieldValue.options Key)}}{{.}}{{/with}}"
                                         id="ez-field-{{ ../../../../content.contentId }}-{{ ../../../../fieldDefinition.identifier }}-options-{{Key}}"
                                     ></div>
                                 {{/if}}

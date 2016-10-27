@@ -228,8 +228,8 @@ YUI.add('smile-twitter-editview', function (Y) {
 
             if ( field && field.fieldValue ) {
                 valueIndexes = field.fieldValue.type;
+                res.push({text: that._getTypeName(valueIndexes), key: valueIndexes});
             }
-            res.push({text: that._getTypeName(valueIndexes), key: valueIndexes});
             return res;
         },
 
@@ -292,16 +292,68 @@ YUI.add('smile-twitter-editview', function (Y) {
         },
 
         _getOptionValues: function () {
-            var options = {};
-
-            var chromeOptions = this.get('container').all('.smile-twitter-options-chrome-values[checked="checked"]'),
-                chromeValues = [];
-            chromeOptions.each(function(chromeValue) {
-                chromeValues.push(chromeValue);
-            });
-            options.chrome = chromeValues;
+            var options = {
+                chrome: this._getOptionsChromeValues(),
+                'tweet-limit': this._getOptionsLimitValue(),
+                'aria-polite': this._getOptionsAriaPoliteValue(),
+                lang: this._getOptionsLangValue(),
+                theme: this._getOptionsThemeValue(),
+                'link-color': this._getOptionsLinkColorValue(),
+                'border-color': this._getOptionsBorderColorValue(),
+                width: this._getOptionsWidthValue(),
+                height: this._getOptionsHeightValue(),
+            };
 
             return options;
+        },
+
+        _getOptionsChromeValues: function() {
+            var chromeOptions = this.get('container').all('.smile-twitter-options-chrome-value:checked'),
+                chromeValues = [];
+            chromeOptions.each(function(chrome) {
+                chromeValues.push(chrome.get('value'));
+            });
+            return chromeValues;
+        },
+
+        _getOptionsLimitValue: function() {
+            return this.get('container').one('.smile-twitter-options-tweet-limit-value').get('value');
+        },
+
+        _getOptionsAriaPoliteValue: function() {
+            var ariaPoliteOption = this.get('container').one('.smile-twitter-options-aria-polite-value:checked'),
+                ariaPoliteValue = null;
+            if (ariaPoliteOption && ariaPoliteOption.get('value') != 'none')
+                ariaPoliteValue = ariaPoliteOption.get('value');
+            return ariaPoliteValue;
+        },
+
+        _getOptionsLangValue: function() {
+            return this.get('container').one('.smile-twitter-options-lang-value').get('value');
+        },
+
+        _getOptionsThemeValue: function() {
+            var themeOption = this.get('container').one('.smile-twitter-options-theme-value:checked'),
+                themeValue = null;
+            if (themeOption && themeOption.get('value') != 'none')
+                themeValue = themeOption.get('value');
+            return themeValue;
+        },
+
+        _getOptionsLinkColorValue: function() {
+            return this.get('container').one('.smile-twitter-options-link-color-value').get('value');
+        },
+
+        _getOptionsBorderColorValue: function() {
+            return this.get('container').one('.smile-twitter-options-border-color-value').get('value');
+        },
+
+        _getOptionsWidthValue: function() {
+            return this.get('container').one('.smile-twitter-options-width-value').get('value');
+        },
+
+        _getOptionsHeightValue: function() {
+            return this.get('container').one('.smile-twitter-options-height-value').get('value');
         },
 
         /*****/

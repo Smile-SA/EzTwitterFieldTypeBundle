@@ -15,7 +15,8 @@ class ValueTransformer implements DataTransformerInterface
         return array(
             $value->title,
             $value->type,
-            $value->user
+            $value->user,
+            $value->options
         );
     }
 

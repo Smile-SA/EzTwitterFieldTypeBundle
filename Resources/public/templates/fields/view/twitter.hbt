@@ -9,7 +9,9 @@
             {{else}}
                 <ul>
                     {{#each value}}
+                        {{#ifEqual @key 'options'}}{{else}}
                         <li>{{@key}}: {{.}}</li>
+                        {{/ifEqual}}
                     {{/each}}
                 </ul>
             {{/if}}

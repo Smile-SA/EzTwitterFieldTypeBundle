@@ -17,6 +17,8 @@ class Value extends BaseValue
 
     public $user;
 
+    public $options;
+
     public function __construct($value = array())
     {
         if (is_array($value) && isset($value['title']))
@@ -27,6 +29,9 @@ class Value extends BaseValue
 
         if (is_array($value) && isset($value['user']))
             $this->user = $value['user'];
+
+        if (is_array($value) && isset($value['options']))
+            $this->options = $value['options'];
     }
 
     public function __toString()

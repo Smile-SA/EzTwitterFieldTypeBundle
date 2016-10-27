@@ -10,18 +10,21 @@ parameters:
             Field: {checkbox: true}
             Options: ["noheader", "nofooter", "noborders", "noscrollbar", "transparent"]
         tweetlimit: {Name: "Tweet limit", Key: "tweet-limit", Field: {input: true}, Type: {integer: true}}
-        ariapolite: {Name: "Aria polte", Key: "aria-polite", Field: {checkbox: true}, Options: ["assertive"]}
+        ariapolite:
+            Name: "Aria polite"
+            Key: "aria-polite"
+            Field: {radio: true}
+            Options: ["none", "polite", "assertive", "rude"]
         lang: {Name: "Lang", Key: "lang", Field: {input: true}}
         theme:
             Name: "Theme"
             Key: "theme"
             Field: {radio: true}
-            Options: ["light", "dark"]
+            Options: ["none", "light", "dark"]
         linkcolor: {Name: "Link color", Key: "link-color", Field: {input: true}, Type: {hexa: true}}
         bordercolor: {Name: "Border color", Key: "border-color", Field: {input: true}, Type: {hexa: true}}
         width: {Name: "Width", Key: "width", Field: {input: true}, Type: {integer: true}}
         height: {Name: "Height", Key: "height", Field: {input: true}, Type: {integer: true}}
-    ezrepoforms.field_type.form_mapper.smiletwitter.class: Smile\EzTwitterFieldTypeBundle\FieldType\Twitter\FormMapper
 
 services:
     ezsystems.platformui.application_config.provider.types_info:
@@ -45,11 +48,4 @@ services:
         tags:
             - {name: ezpublish.fieldType, alias: smiletwitter}
 
-    ezrepoforms.field_type.form_mapper.smiletwitter:
-        class: "%ezrepoforms.field_type.form_mapper.smiletwitter.class%"
-        tags:
-            - { name: ez.fieldFormMapper.definition, fieldType: smiletwitter }
-            - { name: ez.fieldFormMapper.value, fieldType: smiletwitter }
-        arguments:
-            - "@ezpublish.api.service.field_type"
 

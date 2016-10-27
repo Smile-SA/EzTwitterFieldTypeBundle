@@ -9,7 +9,17 @@
         {% endif %}
         <a
             class="twitter-timeline"
-            href="https://twitter.com/{{ field_value.user }}{{ type }}">
+            href="https://twitter.com/{{ field_value.user }}{{ type }}"
+            {% if field_value.options.theme %}data-theme="{{ field_value.options.theme }}"{% endif %}
+            {% if field_value.options.chrome %}data-chrome="{{ field_value.options.chrome|join(' ') }}"{% endif %}
+            {% if field_value.options['aria-polite'] %}data-ariaPolite="{{ field_value.options['aria-polite'] }}"{% endif %}
+            {% if field_value.options['tweet-limit'] %}data-tweetLimit="{{ field_value.options['tweet-limit'] }}"{% endif %}
+            {% if field_value.options.lang %}data-lang="{{ field_value.options.lang }}"{% endif %}
+            {% if field_value.options['link-color'] %}data-linkColor="#{{ field_value.options['link-color'] }}"{% endif %}
+            {% if field_value.options['border-color'] %}data-borderColor="#{{ field_value.options['border-color'] }}"{% endif %}
+            {% if field_value.options.width %}data-width="{{ field_value.options.width }}"{% endif %}
+            {% if field_value.options.height %}data-height="{{ field_value.options.height }}"{% endif %}
+        >
             {{ field_value.title }}
         </a>
         <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>

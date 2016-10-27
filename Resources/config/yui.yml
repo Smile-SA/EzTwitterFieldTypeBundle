@@ -12,16 +12,21 @@ system:
                     type: 'template'
                     path: "%smile_twitterfieldtype.public_dir%/templates/fields/view/twitter.hbt"
                 smile-twitter-view:
-                    requires: ['ez-fieldview', 'twitterview-ez-template']
+                    requires: ['ez-fieldview', 'twitterview-ez-template', 'smile-tweethelper']
                     dependencyOf: ['ez-rawcontentview']
                     path: "%smile_twitterfieldtype.public_dir%/js/views/fields/smile-twitter-view.js"
                 twittereditview-ez-template:
                     type: 'template'
                     path: "%smile_twitterfieldtype.public_dir%/templates/fields/edit/twitter.hbt"
                 smile-twitter-editview:
-                    requires: ['ez-fieldeditview', 'event-valuechange', 'twittereditview-ez-template']
+                    requires: ['ez-fieldeditview', 'event-valuechange', 'twittereditview-ez-template', 'smile-tweethelper']
                     dependencyOf: ['ez-contenteditformview']
                     path: "%smile_twitterfieldtype.public_dir%/js/views/fields/smile-twitter-editview.js"
+
+                smile-tweethelper:
+                    requires: ['handlebars']
+                    path: "%smile_twitterfieldtype.public_dir%/js/smile-tweethelper.js"
+
 
 
 
