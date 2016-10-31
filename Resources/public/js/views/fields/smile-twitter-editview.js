@@ -76,8 +76,10 @@ YUI.add('smile-twitter-editview', function (Y) {
         },
 
         _getInputValidity: function (e) {
-            if (e && e.target && typeof e.target != 'undefined')
+            if (e && e.target && typeof e.target != 'undefined') {
+console.log(e.target);
                 return e.target.get('validity');
+            }
             return false;
         },
 
@@ -247,7 +249,9 @@ YUI.add('smile-twitter-editview', function (Y) {
 
             if ( field && field.fieldValue ) {
                 valueIndexes = field.fieldValue.type;
-                res.push({text: that._getTypeName(valueIndexes), key: valueIndexes});
+                if (valueIndexes) {
+                    res.push({text: that._getTypeName(valueIndexes), key: valueIndexes});
+                }
             }
             return res;
         },
