@@ -14,7 +14,11 @@ YUI.add('smile-twitter-view', function (Y) {
         /****/
 
         _getFieldValue: function () {
-            return Y.JSON.parse(this.get('field').fieldValue);
+            var values = Y.JSON.parse(this.get('field').fieldValue);
+            if (values.options.type == null) {
+                values.options.type = '';
+            }
+            return values;
         },
     });
 
